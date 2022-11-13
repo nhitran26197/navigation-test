@@ -8,6 +8,7 @@ import { useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
+import TabThreeScreen from "../screens/TabThreeScreen";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -20,22 +21,32 @@ export default function BottomTabNavigator() {
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="TabOne"
+        name="Home"
         component={TabOneNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="home-outline" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Camera"
         component={TabTwoNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="camera-outline" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={TabThreeNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="person-outline" color={color} />
           ),
         }}
       />
@@ -59,7 +70,16 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: "Tab One Title" }}
+        options={{
+          headerTitle: "Tab One Title",
+          headerStyle: {
+            backgroundColor: "#46583D",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
       />
     </TabOneStack.Navigator>
   );
@@ -73,8 +93,40 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        options={{
+          headerTitle: "Tab Two Title",
+          headerStyle: {
+            backgroundColor: "#46583D",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{
+          headerTitle: "Tab Three Title",
+          headerStyle: {
+            backgroundColor: "#46583D",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+    </TabThreeStack.Navigator>
   );
 }
